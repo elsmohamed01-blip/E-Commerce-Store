@@ -1,0 +1,56 @@
+﻿@model List<Order>
+
+
+<div class="container" dir="rtl">
+    @foreach (var item in Model)
+    {
+    <center>
+        <h2 style="color:burlywood">  يتم توصيل الطلب ل <span style="color: darkorange"> @item.Name</span></h2>
+        <h2 style="color:burlywood"> في مكان <span style="color: darkorange"> @item.Aderss</span></h2>
+        <h2 style="color:burlywood"> رقم الهاتف <span style="color: darkorange"> @item.Mobile</span></h2>
+    </center>
+
+
+<div class="row " style="margin:25px">
+
+    <div class="col-lg-8 col-md-12 " style="margin-right:150px">
+        <div class="cart-table-wrap">
+            <table class="cart-table">
+                <thead class="cart-table-head">
+                    <tr class="table-head-row">
+                        <th class="product-image">صورة المنتج</th>
+                        <th class="product-name">اسم المنتج</th>
+                        <th class="product-price">سعر المنتج</th>
+                        <th class="product-quantity">الكمية المطلوبة من المنتج</th>
+                        <th class="product-total">اجمالي سعر الطلب من المنتج</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var details in item.AddorderDeatils)
+                    {
+                        <tr class="table-body-row">
+                            <td class="product-image"><img src="@details.Product.Image" alt=""></td>
+                            <td class="product-name">@details.Product.Name</td>
+                            <td class="product-price">ج.م @details.Product.Price</td>
+                            <td class="product-quantity">@details.Qty</td>
+                            <td class="product-total">@(details.Qty * details.Product.Price)</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <h3 style="color: darkorange;text-align: center">عدد الطلبات : @item.AddorderDeatils.Sum(x => x.Qty)</h3>
+
+            <h3 style="color: darkorange;text-align: center">اجمالي الطلب : @item.AddorderDeatils.Sum(x => x.Totalprice)</h3>
+        </div>
+    </div>
+
+</div>
+<hr />
+<hr />
+<hr />
+    }
+
+</div>
+

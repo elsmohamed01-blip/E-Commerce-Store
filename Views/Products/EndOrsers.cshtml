@@ -1,0 +1,80 @@
+﻿
+
+
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <div class="row" dir="rtl">
+            <div class="col-lg-8">
+                <div class="checkout-accordion-wrap">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card single-accordion">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" style="text-align:right" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        أدخل عنوان الشحن
+
+                                        <p>
+                                            حدِّد عنوان استلام الطلب، واحرص على صحة بيانات الموقع
+                                        </p>
+                                    </button>
+
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="billing-address-form">
+                                        <form method="post" asp-action="AddOrder">
+
+
+                                            <div class=" form-group">
+
+                                                <p><input type="text" name="Name" id="Name" required="" placeholder="الاسم" data-rule="minlen:4" data-msg="من فضلك احل اسم حضرتك" value=""></p>
+                                                <div class="validate"></div>
+
+                                            </div>
+                                            <div class=" form-group">
+
+                                                <p><input type="email" name="Email" id="Email" data-rule="Email" required="" placeholder="الايميل" data-msg="من فضلك ادخل ايميلك" value=""></p>
+                                                <div class="validate"></div>
+                                            </div>
+                                            <div class=" form-group">
+
+                                                <p><input type="text" name="Aderss" id="Adrss" placeholder="العنوان" required="" data-rule="minlen:4" data-msg="من فضلك ادخل العنوان الذي يتم ارسال الطلب له"></p>
+                                                <div class="validate"></div>
+                                            </div>
+
+                                            <div class=" form-group">
+
+                                                <p><input type="tel" name="Mobile" id="Mobile" style="text-align:right" required="" placeholder="رقم الهاتف" data-rule="minlen:4" data-msg="من فضلك ادخل الهاتف الخاص بك للنواصل معك"></p>
+                                                <div class="validate"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <p><input type="datetime-local" name="DataTime" id="DataTime" class="form-control" required="" placeholder="ادخل الوقت والتاريخ" data-rule="minlen:4" data-msg="من فضلك ادخل المعاد المحدد لاستلام الطلب" value=""></p>
+                                                <div class="validate">
+                                                </div>
+                                            </div>
+                                            <div class=" form-group">
+
+                                                <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="أضف ملاحظتك" required=""></textarea></p>
+                                                <div class="validate"></div>
+                                            </div>
+
+
+                                            <div class="text-center">
+                                                <input type="submit" class="btn btn-outline-light" style="margin-bottom:5px" value="إكمال الطلب" onclick="alert('تم حفظ السلة الخاصه بك بنجاح في قائمة الطلبات')" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model List<OrdersCountry>
+
+
+<div class="container" dir="rtl">
+    @foreach (var item in Model)
+    {
+        <center style="color:red">
+            <h2>  يتم توصيل الطلب ل  @item.Name</h2>
+            <h2> في مكان  @item.Aderss</h2>
+        </center>
+
+        <div class="row">
+
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">صورة المنتج</th>
+                                <th class="product-name">اسم المنتج</th>
+                                <th class="product-price">سعر المنتج</th>
+                                <th class="product-quantity">الكمية المطلوبة من المنتج</th>
+                                <th class="product-total">اجمالي سعر الطلب من المنتج</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var details in item.AddOrdersCountries)
+                            {
+                                <tr class="table-body-row">
+                                    <td class="product-image"><img src="@details.ProductCountry.Image" alt=""></td>
+                                    <td class="product-name">@details.ProductCountry.Name</td>
+                                    <td class="product-price">$@details.ProductCountry.Price</td>
+                                    <td class="product-quantity">@details.Qty</td>
+                                    <td class="product-total">@(details.Qty * details.ProductCountry.Price)</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <h3 style="color: darkorange;text-align: center">عدد الطلبات : @item.AddOrdersCountries.Sum(x => x.Qty)</h3>
+
+                    <h3 style="color: darkorange;text-align: center">اجمالي الطلب : @item.AddOrdersCountries.Sum(x => x.Totalprice)</h3>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

@@ -1,0 +1,142 @@
+﻿
+@model IndexVM
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="text-align:center">المنتجات</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="filter-active" data-filter="*">All</li>
+                        @foreach (var item in Model.Cateogries)
+                        {
+                            <li data-filter="._@item.Id">@item.Name</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product-lists" style="position: relative; height: 519.7px;">
+            @foreach (var item in Model.Products)
+            {
+                <div class="col-lg-4 col-md-6 text-center strawberry _@item.Cat.Id">
+                    <div class="single-product-item _@item.Cat.Id">
+
+                        <div class="product-image">
+                            <a href="/Home/ProductShow/@item.Id"><img src="@item.Image" style="max-height: 200px;min-height:200px" alt=""></a>
+                        </div>
+                        <h3>@item.Name</h3>
+                        <p class="product-price" style="color:darkorange">ج.م @item.Price</p>
+                        <form asp-action="AddToCart" method="post">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <label for="quantity">الكمية:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" value="1" />
+                            <br />
+                            <br />
+
+                            <button type="submit" class="btn btn-outline-dark" style="width:200px;height:35px;background-color:sandybrown">
+                                <i class="fas fa-shopping-cart"></i> اضف إلى السلة
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+
+        
+
+        <div class="testimonail-section mt-150 mb-150">
+            <div class="section-title">
+                <h3 style="color:darkorange;text-align:center">أراء العملاء المنضمين متجرنا المتميز</h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 text-center">
+                        <div class="testimonial-sliders">
+
+                            @foreach (var item in Model.Reviews)
+                            {
+                                <div class="single-testimonial-slider">
+                                    <div class="client-avater">
+                                        <img src="assets/img/company-logos/testimonials-5.jpg" alt="">
+                                    </div>
+                                    <div class="client-meta">
+
+
+                                        <h3>@item.Name <span>@item.Adress</span></h3>
+                                        <p class="testimonial-body">
+                                            @item.Description
+                                        </p>
+                                        <div class="last-icon">
+                                            <i class="fas fa-quote-right"></i>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            }
+                                <div class="single-testimonial-slider">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- contact form -->
+        <div class="contact-from-section mt-150 mb-150" dir="rtl">
+            <div class="section-title">
+                <h3 style="color:darkorange;text-align:center">ارسل رسالتك الخاصه لنا من خلال الفورم التالي</h3>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        <div class="form-title">
+                            <h2 style="text-align:right;color:darkorange"><i class="fas fa-address-book"> تواصل معنا  </i> </h2>
+                        </div>
+                        <div id="form_status"></div>
+                        <div class="contact-form">
+                            <form asp-action="Sendreview" asp-controller="Home" method="get">
+                                <p>
+                                    <input type="text" placeholder="الاسم" name="name" id="name">
+                                    <input type="email" placeholder="الايميل" name="email" id="email">
+                                </p>
+                                <p>
+                                    <input type="tel" placeholder="رقم الهاتف" name="mobill" id="mobill" style="text-align:right">
+                                    <input type="text" placeholder="العنوان" name="adress" id="adress">
+                                </p>
+                                <p><textarea name="description" id="description" cols="30" rows="10" placeholder="ادخل رسالتك"></textarea></p>
+                                <div class="text-center">
+                                    <input type="hidden" name="token" value="" />
+                                    <input type="submit" value="أرسل رسالتك" onclick="alert('تم حفظ رسالتك بنجاح')">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="contact-form-wrap">
+                            <div class="contact-form-box">
+                                <h4><i class="fas fa-map"></i> العنوان</h4>
+                                <p>المنصورة <br> بلقاس <br> السماحية الكبري</p>
+                            </div>
+                            <div class="contact-form-box">
+                                <h4><i class="far fa-clock"></i> ساعات العمل</h4>
+                                <p>السبت - الخميس : 8 الي 10 مساء <br> اجازه العمل :الجمعه </p>
+                            </div>
+                            <div class="contact-form-box">
+                                <h4><i class="fas fa-address-book"></i> اتصل بنا</h4>
+                                <p>Phone: 01026259270 <br> Email: mohamedalsyed848@gmail.com</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end contact form -->
+
+    </div>
+</div>

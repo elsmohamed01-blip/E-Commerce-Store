@@ -1,0 +1,79 @@
+﻿
+@model List<Cart>
+
+
+
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-remove"></th>
+                                <th class="product-image">صورة المنتج</th>
+                                <th class="product-name">اسم المنتج</th>
+                                <th class="product-price">سعر المنتج</th>
+                                <th class="product-quantity">الكمية المطلوبة من المنتج</th>
+                                <th class="product-total">اجمالي سعر الطلب من المنتج</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="table-body-row">
+                                    <td class="product-remove">
+                                        <form asp-action="RemoveFromCart" asp-controller="Home" method="post">
+                                            <input type="hidden" name="id" value="@item.ProductId" />
+                                            <button type="submit" class="far fa-window-close"></button>
+                                        </form>
+                                    </td>
+                                    <td class="product-image"><img src="@item.Product.Image" alt=""></td>
+                                    <td class="product-name">@item.Product.Name</td>
+                                    <td class="product-price">ج.م @item.Product.Price</td>
+                                    <td class="product-quantity">@item.Qty</td>
+                                    <td class="product-total">@(item.Qty * item.Product.Price)</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row"style="border:solid 1px;margin:7px;border-radius:4px 3px 2px;margin-top:2px;width:350px;height:380px"dir="rtl">
+                <div class="shadow-default bg-storeBG p-5 xs:p-7 rounded-md mb-5 relative transition-height duration-1000" >
+                    <h4 class="font-bold text-sm mb-5 text-store-text-primary">ملخص الطلب</h4>
+
+                    <div class="flex justify-between text-sm mb-5">
+                        <span class="text-store-text-secondary">مجموع المنتجات: </span>
+                        <b id="sub-total" class="text-store-text-primary">@Model.Sum(x => x.Qty)</b>
+                    </div>
+
+                    <!-- coupon discount -->
+
+                    <div class="flex justify-between text-lg mb-5">
+                        <span class="text-store-text-secondary">الإجمالي: </span>
+                        <b class="text-store-text-primary" data-cart-total="">ج.م @Model.Sum(x => x.Qty * x.Price)</b>
+                    </div>
+
+                    <div class="flex justify-between text-sm mb-5">
+                        <small class="text-store-text-secondary">
+                            *
+                            الأسعار شاملة للضريبة
+                        </small>
+                    </div>
+
+                    <div class="cart-submit-wrap">
+                        <center>
+                            <a href="/home/EndOrsers" class="btn btn-outline-danger" style="margin-bottom:5px">إنهاء طلبات سلتك</a>
+                        </center>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

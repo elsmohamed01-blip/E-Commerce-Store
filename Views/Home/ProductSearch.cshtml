@@ -1,0 +1,57 @@
+﻿
+@model List<Product>
+
+<div class="container mt-5 mb-5">
+    <form asp-action="ProductSearch" asp-controller="Home" method="get">
+
+        <div class="row">
+
+            <input type="submit" class="col-sm-2 btn btn-info" value="إبحث" />
+
+            <div class="col-sm-10">
+
+                <input type="text" name="xname" id="xname" style="text-align:right" class="form-control" placeholder="البحث" />
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<hr />
+<hr />
+<br />
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">المنتجات الخاصة </span> بالقسم</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product-lists" style="position: relative; height: 519.7px;">
+            @foreach (var item in Model)
+            {
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="/Home/ProductShow/@item.Id"><img src="../@item.Image" style="min-width:200px;min-height:200px" alt=""></a>
+                    </div>
+                    <h3>@item.Name</h3>
+                    <p class="product-price"><span>كمية المنتج :@item.Quantity</span>ج.م @item.Price</p>
+                    <form asp-action="AddToCart" method="post">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <label for="quantity">الكمية:</label>
+                        <br />
+                        <br />
+                        <input type="number" id="quantity" name="Quantity" min="1" max="@item.Quantity" value="1" required />
+                        <button type="submit" class="cart-btn"style="width:250px;height:35px;background-color:sandybrown"><i class="fas fa-shopping-cart" ></i> أضف إلى السلة</button>
+                    </form>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
